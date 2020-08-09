@@ -1,3 +1,4 @@
 # UC-VaultAddon
 
-This is an example of how to make an addon for UltraCustomizer!
+This is the Citizens Addon for UltraCustomizer.
+This can be used as an example of how to use Elements.
