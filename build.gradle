@@ -14,12 +14,7 @@ dependencies {
 }
 
 repositories {
-    mavenCentral()
-    jcenter()
-    maven {
-        name = 'spigotmc-repo'
-        url = 'https://hub.spigotmc.org/nexus/content/groups/public/'
-    }
+    maven { url = 'https://hub.spigotmc.org/nexus/content/groups/public/' }
 }
 
 tasks.withType(JavaCompile) {
