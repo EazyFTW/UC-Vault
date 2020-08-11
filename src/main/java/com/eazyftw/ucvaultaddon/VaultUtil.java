@@ -19,13 +19,11 @@ public class VaultUtil {
     }
 
     public static boolean setupEconomy() {
-        if (!hasVault()) {
-            return false;
-        }
+        if (!hasVault()) return false;
+
         RegisteredServiceProvider<Economy> rsp = Bukkit.getServer().getServicesManager().getRegistration(Economy.class);
-        if (rsp == null) {
-            return false;
-        }
+
+        if (rsp == null) return false;
         econ = rsp.getProvider();
         return econ != null;
     }

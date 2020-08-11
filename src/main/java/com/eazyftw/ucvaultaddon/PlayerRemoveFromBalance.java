@@ -62,13 +62,15 @@ public class PlayerRemoveFromBalance extends Element {
     public void run(final ElementInfo info, final ScriptInstance instance) {
         final Player player = (Player)this.getArguments(info)[0].getValue(instance);
         final int amount = (int)(long)this.getArguments(info)[1].getValue(instance);
+        VaultUtil.setupVault();
         if(!VaultUtil.hasVault()) {
             plugin.log(Tools.c("%prefix% &cVault is needed to use the PlayerRemoveFromBalance element."));
+            this.getConnectors(info)[0].run(instance);
             return;
         }
         if(VaultUtil.getEconomy() == null) {
             plugin.log(Tools.c("%prefix% &cThe Economy has to be setup to use the PlayerRemoveFromBalance element. Do you have an Economy plugin installed?"));
-            this.getConnectors(info)[1].run(instance);
+            this.getConnectors(info)[0].run(instance);
             return;
         }
         VaultUtil.getEconomy().withdrawPlayer(player, amount);

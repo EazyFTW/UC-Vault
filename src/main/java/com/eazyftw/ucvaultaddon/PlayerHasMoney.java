@@ -92,6 +92,7 @@ public class PlayerHasMoney extends Element {
     public void run(final ElementInfo info, final ScriptInstance instance) {
         final Player player = (Player)this.getArguments(info)[0].getValue(instance);
         long amount;
+        VaultUtil.setupVault();
         try {
             amount = (long)this.getArguments(info)[1].getValue(instance);
         } catch (NullPointerException ex) {
