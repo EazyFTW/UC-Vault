@@ -19,19 +19,27 @@ public class VaultUtil {
     }
 
     public static boolean setupEconomy() {
-        if (!hasVault()) return false;
+        try {
+            if (!hasVault()) return false;
 
-        RegisteredServiceProvider<Economy> rsp = Bukkit.getServer().getServicesManager().getRegistration(Economy.class);
+            RegisteredServiceProvider<Economy> rsp = Bukkit.getServer().getServicesManager().getRegistration(Economy.class);
 
-        if (rsp == null) return false;
-        econ = rsp.getProvider();
-        return econ != null;
+            if (rsp == null) return false;
+            econ = rsp.getProvider();
+            return econ != null;
+        } catch (NullPointerException ex) {
+            return false;
+        }
     }
 
     public static boolean setupChat() {
-        RegisteredServiceProvider<Chat> rsp = Bukkit.getServer().getServicesManager().getRegistration(Chat.class);
-        chat = rsp.getProvider();
-        return chat != null;
+        try {
+            RegisteredServiceProvider<Chat> rsp = Bukkit.getServer().getServicesManager().getRegistration(Chat.class);
+            chat = rsp.getProvider();
+            return chat != null;
+        } catch (NullPointerException ex) {
+            return false;
+        }
     }
 
     public static boolean hasVault() {
@@ -39,9 +47,13 @@ public class VaultUtil {
     }
 
     public static boolean setupPermissions() {
-        RegisteredServiceProvider<Permission> rsp = Bukkit.getServer().getServicesManager().getRegistration(Permission.class);
-        perms = rsp.getProvider();
-        return perms != null;
+        try {
+            RegisteredServiceProvider<Permission> rsp = Bukkit.getServer().getServicesManager().getRegistration(Permission.class);
+            perms = rsp.getProvider();
+            return perms != null;
+        } catch (NullPointerException ex) {
+            return false;
+        }
     }
 
     public static Economy getEconomy() {
